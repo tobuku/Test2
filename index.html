@@ -5,8 +5,24 @@
   <title>Brand Studio | Modern Apparel & Design</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
+
+  <!-- Worm SVG - short wiggly worm -->
+  <svg class="worm-svg" viewBox="0 0 80 150">
+    <path class="worm-path"
+      d="M40,10
+         Q70,40 40,70
+         Q10,100 40,130"
+      fill="none"
+      stroke="#1e40af"
+      stroke-width="6"
+      stroke-linecap="round"
+    />
+  </svg>
 
   <!-- Header -->
   <header class="site-header">
@@ -233,6 +249,60 @@
       <p class="footer-small">Concept layout inspired by clean Japanese brand sites, built as a test template.</p>
     </div>
   </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const wormPath = document.querySelector('.worm-path');
+    const wormSvg = document.querySelector('.worm-svg');
+
+    // Wiggle animation - continuous squirming
+    gsap.to(wormPath, {
+      attr: {
+        d: `M40,10
+            Q10,40 40,70
+            Q70,100 40,130`
+      },
+      duration: 0.4,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    // Create a timeline of positions for the worm to travel to
+    const positions = [
+      { x: 50, y: 100 },
+      { x: 300, y: 200 },
+      { x: 100, y: 400 },
+      { x: 500, y: 300 },
+      { x: 200, y: 600 },
+      { x: 600, y: 500 },
+      { x: 150, y: 800 },
+      { x: 400, y: 700 },
+      { x: 80, y: 1000 },
+      { x: 550, y: 900 }
+    ];
+
+    // Create scroll-triggered animation through positions
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.5
+      }
+    });
+
+    // Add each position as a step in the timeline
+    positions.forEach((pos, i) => {
+      tl.to(wormSvg, {
+        left: pos.x,
+        top: pos.y,
+        rotation: (i % 2 === 0) ? 15 : -15,
+        duration: 1
+      });
+    });
+  </script>
 
 </body>
 </html>
