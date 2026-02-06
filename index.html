@@ -2,307 +2,466 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Brand Studio | Modern Apparel & Design</title>
+  <title>VOID Studio | Digital Experiences That Transcend</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <!-- GSAP + ScrollTrigger -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP + Plugins -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 </head>
 <body>
+  <!-- Custom Cursor -->
+  <div class="cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <span class="cursor-text">View</span>
+  </div>
 
-  <!-- Worm SVG - short wiggly worm -->
-  <svg class="worm-svg" viewBox="0 0 80 150">
-    <path class="worm-path"
-      d="M40,10
-         Q70,40 40,70
-         Q10,100 40,130"
-      fill="none"
-      stroke="#1e40af"
-      stroke-width="6"
-      stroke-linecap="round"
-    />
-  </svg>
-
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        <span class="logo-mark">BR</span>
-        <span class="logo-text">Brand Studio</span>
+  <!-- Loader -->
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="loader-progress">
+        <span class="loader-number">0</span>
+        <span class="loader-percent">%</span>
       </div>
-      <nav class="nav">
-        <a href="#concept">Concept</a>
-        <a href="#features">Features</a>
-        <a href="#brand">Brand</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="loader-bar">
+        <div class="loader-fill"></div>
+      </div>
+      <p class="loader-text">Entering the void...</p>
     </div>
-  </header>
+  </div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-copy">
-        <p class="hero-eyebrow">Timeless design for everyday life</p>
-        <h1>Beautiful pieces that stay with you, season after season.</h1>
-        <p class="hero-sub">
-          A design studio that blends comfort, silhouette and subtle detail
-          to create styles that feel current without chasing trends.
-        </p>
-        <div class="hero-actions">
-          <a href="#brand" class="btn primary">Explore the collection</a>
-          <a href="#concept" class="btn ghost">Our philosophy</a>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <span class="logo-void">VOID</span>
+      <span class="logo-dot"></span>
+    </a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link" data-text="About">About</a>
+      <a href="#work" class="nav-link" data-text="Work">Work</a>
+      <a href="#services" class="nav-link" data-text="Services">Services</a>
+      <a href="#contact" class="nav-link magnetic-btn" data-text="Contact">
+        <span>Let's Talk</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <!-- Floating Shapes -->
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+    </div>
+
+    <!-- Gradient Mesh Background -->
+    <div class="hero-gradient"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Digital Design Studio</span>
+      </div>
+
+      <h1 class="hero-title magnetic-area">
+        <div class="title-line">
+          <span class="title-word" data-word="We">We</span>
+          <span class="title-word" data-word="Create">Create</span>
         </div>
-      </div>
-      <div class="hero-media">
-        <div class="hero-photo hero-photo-main"></div>
-        <div class="hero-photo hero-photo-accent"></div>
+        <div class="title-line">
+          <span class="title-word italic" data-word="Digital">Digital</span>
+          <span class="title-word" data-word="Voids">Voids</span>
+        </div>
+      </h1>
+
+      <p class="hero-sub">
+        <span>Award-winning studio crafting immersive digital</span>
+        <span>experiences that transcend the ordinary.</span>
+      </p>
+
+      <div class="hero-cta">
+        <a href="#work" class="btn-primary magnetic-btn">
+          <span class="btn-text">Explore Work</span>
+          <span class="btn-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+        </a>
+        <a href="#about" class="btn-ghost magnetic-btn">
+          <span class="btn-text">Our Story</span>
+        </a>
       </div>
     </div>
+
     <div class="hero-scroll">
-      <span class="scroll-label">Scroll</span>
-      <span class="scroll-line"></span>
+      <div class="scroll-indicator">
+        <span class="scroll-text">Scroll</span>
+        <div class="scroll-line">
+          <div class="scroll-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-footer">
+      <div class="hero-stat">
+        <span class="stat-number" data-count="150">0</span>
+        <span class="stat-plus">+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-number" data-count="12">0</span>
+        <span class="stat-label">Awards</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-number" data-count="8">0</span>
+        <span class="stat-label">Years</span>
+      </div>
     </div>
   </section>
 
-  <!-- Concept -->
-  <section id="concept" class="section section-muted">
-    <div class="container">
-      <header class="section-header">
-        <p class="section-tag">CONCEPT</p>
-        <h2>Everyday beauty, quietly considered.</h2>
-      </header>
-
-      <div class="concept-layout">
-        <p class="concept-lead">
-          We design for people who want to feel like themselves, not like a mannequin.
-          Clean lines, softened shapes and fabric that moves with you, not against you.
-        </p>
-        <div class="concept-body">
-          <p>
-            From the first sketch to final fitting, our goal is to remove noise and leave only
-            what feels essential. Pieces that layer easily, work across seasons and live well
-            in real wardrobes.
-          </p>
-          <p>
-            We focus on gentle structure, modest volume and quiet detail. The result is a
-            collection that feels familiar from day one, but still gives you a small spark
-            whenever you reach for it.
-          </p>
+  <!-- About Section - Pinned Text Reveal -->
+  <section class="about" id="about">
+    <div class="about-pin">
+      <div class="about-content">
+        <p class="about-tag">( About Us )</p>
+        <h2 class="about-text reveal-text">
+          <span class="word">We</span>
+          <span class="word">don't</span>
+          <span class="word">just</span>
+          <span class="word">design</span>
+          <span class="word">websites.</span>
+          <span class="word">We</span>
+          <span class="word">architect</span>
+          <span class="word highlight">digital</span>
+          <span class="word highlight">experiences</span>
+          <span class="word">that</span>
+          <span class="word">captivate,</span>
+          <span class="word">convert,</span>
+          <span class="word">and</span>
+          <span class="word">leave</span>
+          <span class="word">lasting</span>
+          <span class="word highlight">impressions.</span>
+        </h2>
+      </div>
+      <div class="about-visual">
+        <div class="visual-circle"></div>
+        <div class="visual-lines">
+          <span></span><span></span><span></span><span></span><span></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features 01 / 02 / 03 -->
-  <section id="features" class="section">
-    <div class="container">
-      <header class="section-header">
-        <p class="section-tag">FEATURES</p>
-        <h2>Why our partners work with us.</h2>
-      </header>
+  <!-- Work Section - Horizontal Scroll -->
+  <section class="work" id="work">
+    <div class="work-header">
+      <p class="section-tag">( Selected Work )</p>
+      <h2 class="section-title">
+        <span class="title-main">Featured</span>
+        <span class="title-italic">Projects</span>
+      </h2>
+    </div>
 
-      <div class="feature-grid">
-        <article class="feature-card">
-          <div class="feature-number">01</div>
-          <h3>Design that starts from the shop floor.</h3>
-          <p>
-            We listen to the questions staff hear each day and translate those insights into
-            shapes, lengths and details that actually move. Feedback does not sit in a report,
-            it sits on the cutting table.
-          </p>
+    <div class="work-slider">
+      <div class="work-track">
+        <article class="work-card" data-cursor="view">
+          <div class="card-image">
+            <div class="card-img-inner" style="--accent: #6366f1;"></div>
+            <span class="card-number">01</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title scramble-text">Nebula Finance</h3>
+            <p class="card-cat">Fintech • Web App</p>
+          </div>
         </article>
 
-        <article class="feature-card">
-          <div class="feature-number">02</div>
-          <h3>Flexible OEM and small lot production.</h3>
-          <p>
-            From capsule runs to targeted updates of proven styles, we support brands that need
-            quick reaction without sacrificing quality. Clear communication and reliable timing
-            keep your calendar on track.
-          </p>
+        <article class="work-card" data-cursor="view">
+          <div class="card-image">
+            <div class="card-img-inner" style="--accent: #f43f5e;"></div>
+            <span class="card-number">02</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title scramble-text">Aether Studios</h3>
+            <p class="card-cat">Entertainment • Brand</p>
+          </div>
         </article>
 
-        <article class="feature-card">
-          <div class="feature-number">03</div>
-          <h3>Silhouettes that honor real bodies.</h3>
-          <p>
-            We design with drape, ease and movement in mind. Patterns are cut to flatter
-            different frames, so customers feel at ease rather than squeezed into a trend.
-          </p>
+        <article class="work-card" data-cursor="view">
+          <div class="card-image">
+            <div class="card-img-inner" style="--accent: #10b981;"></div>
+            <span class="card-number">03</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title scramble-text">Meridian Health</h3>
+            <p class="card-cat">Healthcare • Platform</p>
+          </div>
         </article>
+
+        <article class="work-card" data-cursor="view">
+          <div class="card-image">
+            <div class="card-img-inner" style="--accent: #f59e0b;"></div>
+            <span class="card-number">04</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title scramble-text">Quantum Labs</h3>
+            <p class="card-cat">Technology • Identity</p>
+          </div>
+        </article>
+
+        <article class="work-card" data-cursor="view">
+          <div class="card-image">
+            <div class="card-img-inner" style="--accent: #8b5cf6;"></div>
+            <span class="card-number">05</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title scramble-text">Prism Gallery</h3>
+            <p class="card-cat">Art • E-commerce</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="work-progress">
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="progress-numbers">
+        <span class="current">01</span>
+        <span class="divider">/</span>
+        <span class="total">05</span>
       </div>
     </div>
   </section>
 
-  <!-- Brand section -->
-  <section id="brand" class="section section-split">
-    <div class="container split-layout">
-      <div class="split-copy">
-        <header class="section-header">
-          <p class="section-tag">BRAND</p>
-          <h2>Clothing that fits the life you actually live.</h2>
-        </header>
-        <p class="split-lead">
-          We focus on three pillars: comfort, longevity and quiet confidence.
-          Each piece is designed to sit naturally in your day, whether you are working,
-          traveling or simply taking a slow morning at home.
-        </p>
-        <ul class="pillars">
-          <li>Soft, breathable fabrics selected for all day wear.</li>
-          <li>Neutral and earth tone palette that layers across seasons.</li>
-          <li>Subtle details that read as thoughtful, not loud.</li>
-        </ul>
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="services-container">
+      <div class="services-header">
+        <p class="section-tag">( What We Do )</p>
+        <h2 class="section-title">
+          <span class="title-main">Our</span>
+          <span class="title-italic">Services</span>
+        </h2>
       </div>
-      <div class="split-media">
-        <div class="brand-photo brand-photo-main"></div>
-        <div class="brand-photo brand-photo-note">
-          <p>
-            Designed in small batches with partners who care about fit and finish
-            as much as we do.
-          </p>
+
+      <div class="services-grid">
+        <div class="service-item" data-cursor="view">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
+              <path d="M24 14V34M14 24H34" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Brand Identity</h3>
+            <p class="service-desc">Strategic brand development that resonates with your audience and stands apart from competition.</p>
+          </div>
+          <div class="service-stats">
+            <span class="stat-counter" data-count="47">0</span>
+            <span class="stat-suffix">Brands Built</span>
+          </div>
+        </div>
+
+        <div class="service-item" data-cursor="view">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <rect x="8" y="8" width="32" height="32" rx="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 18H40" stroke="currentColor" stroke-width="2"/>
+              <circle cx="14" cy="13" r="2" fill="currentColor"/>
+              <circle cx="20" cy="13" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Web Development</h3>
+            <p class="service-desc">Cutting-edge websites and applications built with performance and user experience at the core.</p>
+          </div>
+          <div class="service-stats">
+            <span class="stat-counter" data-count="89">0</span>
+            <span class="stat-suffix">Sites Launched</span>
+          </div>
+        </div>
+
+        <div class="service-item" data-cursor="view">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M24 4L44 14V34L24 44L4 34V14L24 4Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M24 24L44 14M24 24V44M24 24L4 14" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">3D & Motion</h3>
+            <p class="service-desc">Immersive 3D experiences and motion design that bring your digital presence to life.</p>
+          </div>
+          <div class="service-stats">
+            <span class="stat-counter" data-count="34">0</span>
+            <span class="stat-suffix">Projects</span>
+          </div>
+        </div>
+
+        <div class="service-item" data-cursor="view">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
+              <path d="M18 24C18 20.6863 20.6863 18 24 18C27.3137 18 30 20.6863 30 24C30 27.3137 27.3137 30 24 30" stroke="currentColor" stroke-width="2"/>
+              <path d="M24 30L24 36" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Digital Strategy</h3>
+            <p class="service-desc">Data-driven strategies that align your digital presence with business objectives.</p>
+          </div>
+          <div class="service-stats">
+            <span class="stat-counter" data-count="23">0</span>
+            <span class="stat-suffix">Strategies</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- News / blog style cards -->
-  <section id="news" class="section section-muted">
-    <div class="container">
-      <header class="section-header">
-        <p class="section-tag">NEWS</p>
-        <h2>Latest stories and updates.</h2>
-      </header>
-
-      <div class="news-grid">
-        <article class="news-card">
-          <p class="news-date">2025.10.12</p>
-          <h3>New season capsule for city and coast.</h3>
-          <p>
-            A focused run of light outerwear and layering pieces designed to carry you
-            from morning chill to midday sun without constant changing.
-          </p>
-        </article>
-        <article class="news-card">
-          <p class="news-date">2025.09.28</p>
-          <h3>Working with small boutiques nationwide.</h3>
-          <p>
-            We continue to expand our partner network with stores that value conversation,
-            fit sessions and long term relationships over quick drops.
-          </p>
-        </article>
-        <article class="news-card">
-          <p class="news-date">2025.09.01</p>
-          <h3>Behind the seams: our pattern room.</h3>
-          <p>
-            A look at how we build prototypes, test wearability and refine movement
-            before a piece ever reaches the shop floor.
-          </p>
-        </article>
+  <!-- Marquee Section -->
+  <section class="marquee-section">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item">Let's Create Something</span>
+        <span class="marquee-star">✦</span>
+        <span class="marquee-item">Let's Create Something</span>
+        <span class="marquee-star">✦</span>
+        <span class="marquee-item">Let's Create Something</span>
+        <span class="marquee-star">✦</span>
+        <span class="marquee-item">Let's Create Something</span>
+        <span class="marquee-star">✦</span>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section section-contact">
-    <div class="container contact-inner">
-      <div class="contact-copy">
-        <p class="section-tag light">CONTACT</p>
-        <h2>Let us help shape your next collection.</h2>
-        <p>
-          For OEM collaboration, wholesale inquiries or press, get in touch and our team will
-          respond with next steps and timing.
-        </p>
-        <ul class="contact-list">
-          <li><strong>Email</strong> hello@brandstudio.example</li>
-          <li><strong>Phone</strong> 808 555 0199</li>
-          <li><strong>Location</strong> Honolulu, HI</li>
-        </ul>
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="contact-container">
+      <div class="contact-left">
+        <p class="section-tag">( Get In Touch )</p>
+        <h2 class="contact-title">
+          <span class="line">Have a project</span>
+          <span class="line">in <em>mind?</em></span>
+        </h2>
+        <p class="contact-sub">We'd love to hear about it. Drop us a line and let's create something extraordinary together.</p>
+
+        <div class="contact-info">
+          <a href="mailto:hello@void.studio" class="contact-link">
+            <span class="link-label">Email</span>
+            <span class="link-value scramble-text">hello@void.studio</span>
+          </a>
+          <a href="tel:+18085550199" class="contact-link">
+            <span class="link-label">Phone</span>
+            <span class="link-value">+1 808 555 0199</span>
+          </a>
+          <div class="contact-link">
+            <span class="link-label">Location</span>
+            <span class="link-value">San Francisco, CA</span>
+          </div>
+        </div>
       </div>
-      <form class="contact-form">
-        <label>
-          Name
-          <input type="text" name="name" placeholder="Your name">
-        </label>
-        <label>
-          Company
-          <input type="text" name="company" placeholder="Brand or shop name">
-        </label>
-        <label>
-          Email
-          <input type="email" name="email" placeholder="you@example.com">
-        </label>
-        <label>
-          Message
-          <textarea name="message" rows="4" placeholder="Project idea, timeline, quantity, styles."></textarea>
-        </label>
-        <button type="submit" class="btn primary full">Send inquiry</button>
-      </form>
+
+      <div class="contact-right">
+        <form class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-input" placeholder="John Doe">
+              <span class="input-line"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="john@example.com">
+              <span class="input-line"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">What can we help with?</label>
+            <div class="form-tags">
+              <label class="tag-option">
+                <input type="checkbox" name="service" value="brand">
+                <span class="tag-label">Brand Identity</span>
+              </label>
+              <label class="tag-option">
+                <input type="checkbox" name="service" value="web">
+                <span class="tag-label">Web Development</span>
+              </label>
+              <label class="tag-option">
+                <input type="checkbox" name="service" value="motion">
+                <span class="tag-label">3D & Motion</span>
+              </label>
+              <label class="tag-option">
+                <input type="checkbox" name="service" value="strategy">
+                <span class="tag-label">Digital Strategy</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tell us about your project</label>
+            <textarea class="form-input form-textarea" rows="4" placeholder="Project details, timeline, budget..."></textarea>
+            <span class="input-line"></span>
+          </div>
+
+          <button type="submit" class="btn-submit magnetic-btn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+          </button>
+        </form>
+      </div>
     </div>
   </section>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2025 Brand Studio. All rights reserved.</p>
-      <p class="footer-small">Concept layout inspired by clean Japanese brand sites, built as a test template.</p>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo">VOID</span>
+          <p class="footer-tagline">Creating digital voids since 2017</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h4>Social</h4>
+            <a href="#" class="scramble-text">Twitter</a>
+            <a href="#" class="scramble-text">Instagram</a>
+            <a href="#" class="scramble-text">Dribbble</a>
+            <a href="#" class="scramble-text">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 VOID Studio. All rights reserved.</p>
+        <p class="footer-credits">Crafted with obsessive attention to detail</p>
+      </div>
     </div>
   </footer>
 
-  <script>
-    gsap.registerPlugin(ScrollTrigger);
-
-    const wormPath = document.querySelector('.worm-path');
-    const wormSvg = document.querySelector('.worm-svg');
-
-    // Wiggle animation - continuous squirming
-    gsap.to(wormPath, {
-      attr: {
-        d: `M40,10
-            Q10,40 40,70
-            Q70,100 40,130`
-      },
-      duration: 0.4,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
-
-    // Create a timeline of positions for the worm to travel to
-    const positions = [
-      { x: 50, y: 100 },
-      { x: 300, y: 200 },
-      { x: 100, y: 400 },
-      { x: 500, y: 300 },
-      { x: 200, y: 600 },
-      { x: 600, y: 500 },
-      { x: 150, y: 800 },
-      { x: 400, y: 700 },
-      { x: 80, y: 1000 },
-      { x: 550, y: 900 }
-    ];
-
-    // Create scroll-triggered animation through positions
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.5
-      }
-    });
-
-    // Add each position as a step in the timeline
-    positions.forEach((pos, i) => {
-      tl.to(wormSvg, {
-        left: pos.x,
-        top: pos.y,
-        rotation: (i % 2 === 0) ? 15 : -15,
-        duration: 1
-      });
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
