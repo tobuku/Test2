@@ -914,4 +914,279 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// ==========================================
+// NEW: IMAGE REEL - SCROLL SPEED BOOST
+// ==========================================
+const reelSection = document.querySelector('.reel-section');
+if (reelSection) {
+  // Speed up reel on scroll
+  gsap.to('.reel-track--left', {
+    x: '-=300',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: reelSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 0.5
+    }
+  });
+
+  gsap.to('.reel-track--right', {
+    x: '+=300',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: reelSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 0.5
+    }
+  });
+
+  // Reel items fade in on scroll
+  gsap.from('.reel-section', {
+    opacity: 0,
+    duration: 1,
+    scrollTrigger: {
+      trigger: reelSection,
+      start: 'top 90%'
+    }
+  });
+}
+
+// ==========================================
+// NEW: STACK CARDS - PINNED STACKING
+// ==========================================
+const stackSection = document.querySelector('.stack-section');
+const stackCards = document.querySelectorAll('.stack-card');
+
+if (stackSection && stackCards.length > 0) {
+  // Pin the stack container
+  ScrollTrigger.create({
+    trigger: stackSection,
+    start: 'top top',
+    end: 'bottom bottom',
+    pin: '.stack-container',
+    pinSpacing: false
+  });
+
+  // Stack header reveal
+  gsap.from('.stack-header > *', {
+    y: 40,
+    opacity: 0,
+    stagger: 0.15,
+    duration: 0.8,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: stackSection,
+      start: 'top 80%'
+    }
+  });
+
+  // Each card animates in on scroll
+  stackCards.forEach((card, i) => {
+    const rotations = [0, -2, 3];
+    const offsets = [0, 8, 16];
+
+    if (i === 0) {
+      // First card is visible by default
+      gsap.set(card, { zIndex: stackCards.length - i });
+    } else {
+      // Subsequent cards fly in from below with rotation
+      gsap.set(card, {
+        yPercent: 110,
+        rotation: rotations[i] || 0,
+        opacity: 0,
+        zIndex: stackCards.length - i
+      });
+
+      gsap.to(card, {
+        yPercent: 0,
+        y: offsets[i] || 0,
+        rotation: rotations[i] * 0.3,
+        opacity: 1,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: stackSection,
+          start: () => `top+=${(i / stackCards.length) * 200}% top`,
+          end: () => `top+=${((i + 0.5) / stackCards.length) * 200}% top`,
+          scrub: true
+        }
+      });
+    }
+
+    // Parallax on the photo inside each card
+    const photo = card.querySelector('.stack-photo');
+    if (photo) {
+      gsap.to(photo, {
+        yPercent: -8,
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: stackSection,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: true
+        }
+      });
+    }
+  });
+}
+
+// ==========================================
+// NEW: BENTO GRID - STAGGERED CLIP REVEALS
+// ==========================================
+const bentoSection = document.querySelector('.bento-section');
+
+if (bentoSection) {
+  // Bento header reveal
+  gsap.from('.bento-header > *', {
+    y: 40,
+    opacity: 0,
+    stagger: 0.15,
+    duration: 0.8,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: '.bento-header',
+      start: 'top 85%'
+    }
+  });
+
+  // Each bento item has a unique clip-path reveal animation
+  const bentoItems = document.querySelectorAll('.bento-item');
+  const clipAnimations = [
+    { from: 'inset(100% 0 0 0)', to: 'inset(0% 0 0 0)' },     // slide up
+    { from: 'inset(0 0 0 100%)', to: 'inset(0 0 0 0%)' },      // slide from right
+    { from: 'inset(0 100% 0 0)', to: 'inset(0 0% 0 0)' },      // slide from left
+    { from: 'inset(0 0 100% 0)', to: 'inset(0 0 0% 0)' },      // slide down
+    { from: 'inset(50% 50% 50% 50%)', to: 'inset(0 0 0 0)' },  // expand from center
+    { from: 'inset(100% 0 0 0)', to: 'inset(0% 0 0 0)' },      // slide up
+  ];
+
+  bentoItems.forEach((item, i) => {
+    const clip = clipAnimations[i] || clipAnimations[0];
+    const imgWrap = item.querySelector('.bento-img-wrap');
+    const img = item.querySelector('.bento-img');
+
+    // Clip-path reveal
+    gsap.fromTo(imgWrap,
+      { clipPath: clip.from },
+      {
+        clipPath: clip.to,
+        duration: 1.2,
+        ease: 'power3.inOut',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 85%',
+        }
+      }
+    );
+
+    // Inner image parallax
+    gsap.to(img, {
+      yPercent: -10,
+      scale: 1.02,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: item,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  });
+}
+
+// ==========================================
+// NEW: DIAGONAL SPLIT - SCROLL WIPE REVEAL
+// ==========================================
+const splitSection = document.querySelector('.split-section');
+
+if (splitSection) {
+  const splitLeft = splitSection.querySelector('.split-panel--left .split-img-wrap');
+  const splitRight = splitSection.querySelector('.split-panel--right .split-img-wrap');
+  const splitImgs = splitSection.querySelectorAll('.split-img');
+
+  // Pin and reveal
+  const splitTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: splitSection,
+      start: 'top top',
+      end: '+=120%',
+      pin: true,
+      scrub: 1,
+    }
+  });
+
+  // Left panel wipes in from left
+  splitTl.to(splitLeft, {
+    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+    duration: 1,
+    ease: 'none'
+  }, 0);
+
+  // Right panel wipes in from right
+  splitTl.to(splitRight, {
+    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+    duration: 1,
+    ease: 'none'
+  }, 0.1);
+
+  // Images zoom out during reveal
+  splitImgs.forEach(img => {
+    splitTl.to(img, {
+      scale: 1,
+      duration: 1,
+      ease: 'none'
+    }, 0);
+  });
+
+  // Overlay text reveal
+  gsap.from('.split-overlay', {
+    y: 60,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 1,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: splitSection,
+      start: 'top 30%'
+    }
+  });
+}
+
+// ==========================================
+// NEW: IMAGE RIBBON - SCROLL ACCELERATION
+// ==========================================
+const ribbonSection = document.querySelector('.ribbon-section');
+
+if (ribbonSection) {
+  // Accelerate ribbon on scroll
+  gsap.to('.ribbon-track', {
+    x: '-=250',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: ribbonSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 0.5
+    }
+  });
+
+  // Tilt the ribbon on scroll for dynamic feel
+  gsap.fromTo('.ribbon-section',
+    { rotation: -1.5 },
+    {
+      rotation: 1.5,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: ribbonSection,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      }
+    }
+  );
+}
+
 console.log('VOID Studio loaded successfully ✦');
