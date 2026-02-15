@@ -68,6 +68,22 @@
     <!-- Gradient Mesh Background -->
     <div class="hero-gradient"></div>
 
+    <!-- Hero Featured Images -->
+    <div class="hero-images">
+      <div class="hero-img hero-img--primary" data-speed="0.04">
+        <div class="hero-img-inner">
+          <img src="img/1.jpg" alt="Featured work" loading="eager">
+        </div>
+        <div class="hero-img-glow"></div>
+      </div>
+      <div class="hero-img hero-img--secondary" data-speed="0.07">
+        <div class="hero-img-inner">
+          <img src="img/2.jpg" alt="Featured work" loading="eager">
+        </div>
+        <div class="hero-img-glow"></div>
+      </div>
+    </div>
+
     <div class="hero-content">
       <div class="hero-eyebrow">
         <span class="eyebrow-line"></span>
@@ -156,9 +172,54 @@
         </h2>
       </div>
       <div class="about-visual">
-        <div class="visual-circle"></div>
+        <div class="about-image-wrap">
+          <img src="img/3.jpg" alt="About us" class="about-image">
+        </div>
         <div class="visual-lines">
           <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase Section - Staggered Image Grid -->
+  <section class="showcase" id="showcase">
+    <div class="showcase-container">
+      <div class="showcase-header">
+        <p class="section-tag">( Visual Craft )</p>
+        <h2 class="section-title">
+          <span class="title-main">Design</span>
+          <span class="title-italic">Philosophy</span>
+        </h2>
+      </div>
+
+      <div class="showcase-grid">
+        <div class="showcase-item showcase-item--large">
+          <div class="showcase-img-wrap">
+            <img src="img/4.jpg" alt="Conceptual Design" class="showcase-img">
+          </div>
+          <div class="showcase-caption">
+            <span class="showcase-number">001</span>
+            <span class="showcase-label">Conceptual Design</span>
+          </div>
+        </div>
+        <div class="showcase-item showcase-item--tall">
+          <div class="showcase-img-wrap">
+            <img src="img/5.jpg" alt="Visual Systems" class="showcase-img">
+          </div>
+          <div class="showcase-caption">
+            <span class="showcase-number">002</span>
+            <span class="showcase-label">Visual Systems</span>
+          </div>
+        </div>
+        <div class="showcase-item showcase-item--wide">
+          <div class="showcase-img-wrap">
+            <img src="img/6.jpg" alt="Creative Direction" class="showcase-img">
+          </div>
+          <div class="showcase-caption">
+            <span class="showcase-number">003</span>
+            <span class="showcase-label">Creative Direction</span>
+          </div>
         </div>
       </div>
     </div>
@@ -178,56 +239,66 @@
       <div class="work-track">
         <article class="work-card" data-cursor="view">
           <div class="card-image">
-            <div class="card-img-inner" style="--accent: #6366f1;"></div>
+            <div class="card-img-inner">
+              <img src="img/7.jpg" alt="Nebula Finance" class="card-photo">
+            </div>
             <span class="card-number">01</span>
           </div>
           <div class="card-content">
             <h3 class="card-title scramble-text">Nebula Finance</h3>
-            <p class="card-cat">Fintech • Web App</p>
+            <p class="card-cat">Fintech &bull; Web App</p>
           </div>
         </article>
 
         <article class="work-card" data-cursor="view">
           <div class="card-image">
-            <div class="card-img-inner" style="--accent: #f43f5e;"></div>
+            <div class="card-img-inner">
+              <img src="img/8.jpg" alt="Aether Studios" class="card-photo">
+            </div>
             <span class="card-number">02</span>
           </div>
           <div class="card-content">
             <h3 class="card-title scramble-text">Aether Studios</h3>
-            <p class="card-cat">Entertainment • Brand</p>
+            <p class="card-cat">Entertainment &bull; Brand</p>
           </div>
         </article>
 
         <article class="work-card" data-cursor="view">
           <div class="card-image">
-            <div class="card-img-inner" style="--accent: #10b981;"></div>
+            <div class="card-img-inner">
+              <img src="img/9.jpg" alt="Meridian Health" class="card-photo">
+            </div>
             <span class="card-number">03</span>
           </div>
           <div class="card-content">
             <h3 class="card-title scramble-text">Meridian Health</h3>
-            <p class="card-cat">Healthcare • Platform</p>
+            <p class="card-cat">Healthcare &bull; Platform</p>
           </div>
         </article>
 
         <article class="work-card" data-cursor="view">
           <div class="card-image">
-            <div class="card-img-inner" style="--accent: #f59e0b;"></div>
+            <div class="card-img-inner">
+              <img src="img/10.jpg" alt="Quantum Labs" class="card-photo">
+            </div>
             <span class="card-number">04</span>
           </div>
           <div class="card-content">
             <h3 class="card-title scramble-text">Quantum Labs</h3>
-            <p class="card-cat">Technology • Identity</p>
+            <p class="card-cat">Technology &bull; Identity</p>
           </div>
         </article>
 
         <article class="work-card" data-cursor="view">
           <div class="card-image">
-            <div class="card-img-inner" style="--accent: #8b5cf6;"></div>
+            <div class="card-img-inner">
+              <img src="img/11.jpg" alt="Prism Gallery" class="card-photo">
+            </div>
             <span class="card-number">05</span>
           </div>
           <div class="card-content">
             <h3 class="card-title scramble-text">Prism Gallery</h3>
-            <p class="card-cat">Art • E-commerce</p>
+            <p class="card-cat">Art &bull; E-commerce</p>
           </div>
         </article>
       </div>
@@ -241,6 +312,24 @@
         <span class="current">01</span>
         <span class="divider">/</span>
         <span class="total">05</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cinematic Image Reveal -->
+  <section class="cinematic" id="cinematic">
+    <div class="cinematic-inner">
+      <div class="cinematic-img-wrap">
+        <img src="img/12.jpg" alt="Cinematic showcase" class="cinematic-img">
+      </div>
+      <div class="cinematic-overlay">
+        <div class="cinematic-text">
+          <p class="cinematic-tag">( Immersive Experiences )</p>
+          <h2 class="cinematic-title">
+            <span>Where Vision</span>
+            <span><em>Meets</em> Reality</span>
+          </h2>
+        </div>
       </div>
     </div>
   </section>
@@ -331,18 +420,45 @@
     </div>
   </section>
 
+  <!-- Duo Image Section -->
+  <section class="duo-section">
+    <div class="duo-container">
+      <div class="duo-item duo-item--left">
+        <div class="duo-img-wrap">
+          <img src="img/13.jpg" alt="Our studio" class="duo-img">
+        </div>
+        <div class="duo-caption">
+          <span class="duo-label">Our Studio</span>
+          <span class="duo-desc">Where ideas come to life</span>
+        </div>
+      </div>
+      <div class="duo-divider">
+        <div class="duo-divider-line"></div>
+      </div>
+      <div class="duo-item duo-item--right">
+        <div class="duo-img-wrap">
+          <img src="img/14.jpg" alt="Our process" class="duo-img">
+        </div>
+        <div class="duo-caption">
+          <span class="duo-label">Our Process</span>
+          <span class="duo-desc">Crafted with precision</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Marquee Section -->
   <section class="marquee-section">
     <div class="marquee">
       <div class="marquee-track">
         <span class="marquee-item">Let's Create Something</span>
-        <span class="marquee-star">✦</span>
+        <span class="marquee-star">&#10022;</span>
         <span class="marquee-item">Let's Create Something</span>
-        <span class="marquee-star">✦</span>
+        <span class="marquee-star">&#10022;</span>
         <span class="marquee-item">Let's Create Something</span>
-        <span class="marquee-star">✦</span>
+        <span class="marquee-star">&#10022;</span>
         <span class="marquee-item">Let's Create Something</span>
-        <span class="marquee-star">✦</span>
+        <span class="marquee-star">&#10022;</span>
       </div>
     </div>
   </section>
@@ -456,7 +572,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2025 VOID Studio. All rights reserved.</p>
+        <p>&copy; 2025 VOID Studio. All rights reserved.</p>
         <p class="footer-credits">Crafted with obsessive attention to detail</p>
       </div>
     </div>

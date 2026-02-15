@@ -264,12 +264,27 @@ function initHeroAnimations() {
     ease: 'power3.out'
   }, '-=0.4');
 
+  // Hero image reveals - clip-path animations
+  heroTl.to('.hero-img--primary', {
+    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+    duration: 1.4,
+    ease: 'power4.inOut'
+  }, '-=0.8')
+  .to('.hero-img--secondary', {
+    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+    duration: 1.2,
+    ease: 'power4.inOut'
+  }, '-=0.8')
+  .add(() => {
+    document.querySelectorAll('.hero-img').forEach(img => img.classList.add('revealed'));
+  });
+
   // Animate scroll indicator
   heroTl.from('.hero-scroll', {
     opacity: 0,
     y: 20,
     duration: 0.6
-  }, '-=0.2');
+  }, '-=0.6');
 
   // Animate stats with counting
   heroTl.from('.hero-footer', {
@@ -294,13 +309,16 @@ function initHeroAnimations() {
     });
   });
 
-  // Floating shapes parallax on mouse move
+  // Floating shapes + hero images parallax on mouse move
   const shapes = document.querySelectorAll('.shape');
+  const heroImages = document.querySelectorAll('.hero-img');
+
   document.addEventListener('mousemove', (e) => {
     const { clientX, clientY } = e;
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
+    // Shapes parallax
     shapes.forEach((shape, i) => {
       const speed = (i + 1) * 0.02;
       const x = (clientX - centerX) * speed;
@@ -313,6 +331,48 @@ function initHeroAnimations() {
         ease: 'power2.out'
       });
     });
+
+    // Hero images 3D parallax
+    heroImages.forEach(img => {
+      const speed = parseFloat(img.dataset.speed) || 0.04;
+      const x = (clientX - centerX) * speed;
+      const y = (clientY - centerY) * speed;
+      const rotateY = (clientX - centerX) * 0.01;
+      const rotateX = (clientY - centerY) * -0.01;
+
+      gsap.to(img, {
+        x: x,
+        y: y,
+        rotateY: rotateY,
+        rotateX: rotateX,
+        duration: 1.2,
+        ease: 'power2.out',
+        transformPerspective: 1000
+      });
+    });
+  });
+
+  // Hero images parallax on scroll
+  gsap.to('.hero-img--primary', {
+    yPercent: -30,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+
+  gsap.to('.hero-img--secondary', {
+    yPercent: -50,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true
+    }
   });
 }
 
@@ -344,15 +404,85 @@ aboutWords.forEach((word, i) => {
   });
 });
 
-// Rotate visual circle on scroll
-gsap.to('.visual-circle', {
+// Rotate and scale the about image on scroll
+gsap.to('.about-image-wrap', {
   rotation: 360,
+  scale: 1.15,
   scrollTrigger: {
     trigger: aboutSection,
     start: 'top top',
     end: 'bottom bottom',
     scrub: 1
   }
+});
+
+// About image inner parallax
+gsap.to('.about-image', {
+  scale: 1,
+  filter: 'grayscale(0) brightness(1)',
+  scrollTrigger: {
+    trigger: aboutSection,
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: 1
+  }
+});
+
+// ==========================================
+// SHOWCASE SECTION - STAGGERED REVEALS
+// ==========================================
+const showcaseItems = document.querySelectorAll('.showcase-item');
+
+// Showcase header reveal
+gsap.from('.showcase-header > *', {
+  y: 40,
+  opacity: 0,
+  stagger: 0.15,
+  duration: 0.8,
+  ease: 'power3.out',
+  scrollTrigger: {
+    trigger: '.showcase-header',
+    start: 'top 85%'
+  }
+});
+
+// Each showcase item reveals differently
+showcaseItems.forEach((item, i) => {
+  const img = item.querySelector('.showcase-img');
+  const directions = [
+    { y: 120, x: 0, rotation: 2 },
+    { y: 0, x: 100, rotation: -3 },
+    { y: 80, x: -60, rotation: 1 }
+  ];
+  const dir = directions[i] || directions[0];
+
+  // Container clip reveal
+  gsap.from(item, {
+    y: dir.y,
+    x: dir.x,
+    rotation: dir.rotation,
+    opacity: 0,
+    scale: 0.85,
+    duration: 1.4,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: item,
+      start: 'top 90%',
+    }
+  });
+
+  // Inner image parallax on scroll
+  gsap.to(img, {
+    yPercent: -12,
+    scale: 1.05,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: item,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
 });
 
 // ==========================================
@@ -399,14 +529,15 @@ const workScrollTween = gsap.to(workTrack, {
   }
 });
 
-// Parallax effect on cards during horizontal scroll
+// Card photos parallax during horizontal scroll
 workCards.forEach((card, i) => {
-  const imgInner = card.querySelector('.card-img-inner');
+  const photo = card.querySelector('.card-photo');
+  if (!photo) return;
 
-  gsap.fromTo(imgInner,
+  gsap.fromTo(photo,
     { scale: 1.2 },
     {
-      scale: 1,
+      scale: 1.05,
       ease: 'none',
       scrollTrigger: {
         trigger: workSection,
@@ -417,6 +548,66 @@ workCards.forEach((card, i) => {
     }
   );
 });
+
+// ==========================================
+// CINEMATIC SECTION - CIRCLE REVEAL
+// ==========================================
+const cinematicSection = document.querySelector('.cinematic');
+const cinematicImgWrap = document.querySelector('.cinematic-img-wrap');
+const cinematicImg = document.querySelector('.cinematic-img');
+
+if (cinematicSection && cinematicImgWrap) {
+  // Pin and expand circle clip-path
+  gsap.to(cinematicImgWrap, {
+    clipPath: 'circle(75% at 50% 50%)',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: cinematicSection,
+      start: 'top top',
+      end: '+=150%',
+      pin: true,
+      scrub: 1,
+    }
+  });
+
+  // Parallax zoom on the image within
+  gsap.to(cinematicImg, {
+    scale: 1,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: cinematicSection,
+      start: 'top top',
+      end: '+=150%',
+      scrub: 1
+    }
+  });
+
+  // Cinematic text reveal
+  gsap.from('.cinematic-text', {
+    opacity: 0,
+    y: 60,
+    scale: 0.9,
+    duration: 1.2,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: cinematicSection,
+      start: 'top 40%',
+    }
+  });
+
+  // Cinematic title lines stagger
+  gsap.from('.cinematic-title span', {
+    yPercent: 100,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 1,
+    ease: 'power4.out',
+    scrollTrigger: {
+      trigger: cinematicSection,
+      start: 'top 30%',
+    }
+  });
+}
 
 // ==========================================
 // SERVICES SECTION - COUNTER ANIMATION
@@ -453,6 +644,109 @@ gsap.from('.service-item', {
     start: 'top 80%'
   }
 });
+
+// ==========================================
+// DUO SECTION - SPLIT REVEAL + PARALLAX
+// ==========================================
+const duoSection = document.querySelector('.duo-section');
+
+if (duoSection) {
+  // Left item slides in from left
+  gsap.from('.duo-item--left', {
+    x: -120,
+    opacity: 0,
+    rotation: -3,
+    duration: 1.4,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: duoSection,
+      start: 'top 75%'
+    }
+  });
+
+  // Right item slides in from right
+  gsap.from('.duo-item--right', {
+    x: 120,
+    opacity: 0,
+    rotation: 3,
+    duration: 1.4,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: duoSection,
+      start: 'top 75%'
+    }
+  });
+
+  // Divider line grows
+  gsap.from('.duo-divider-line', {
+    scaleY: 0,
+    duration: 1.2,
+    ease: 'power3.inOut',
+    scrollTrigger: {
+      trigger: duoSection,
+      start: 'top 70%'
+    }
+  });
+
+  // Opposing parallax: left rises, right sinks
+  gsap.to('.duo-item--left', {
+    y: -50,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: duoSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+
+  gsap.to('.duo-item--right', {
+    y: 50,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: duoSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+
+  // Inner image parallax for depth
+  gsap.to('.duo-item--left .duo-img', {
+    yPercent: -8,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: duoSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+
+  gsap.to('.duo-item--right .duo-img', {
+    yPercent: 8,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: duoSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+
+  // Captions reveal
+  gsap.from('.duo-caption', {
+    y: 20,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 0.8,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: duoSection,
+      start: 'top 60%'
+    }
+  });
+}
 
 // ==========================================
 // MARQUEE ANIMATION
