@@ -4,7 +4,7 @@
 
 **Repository**: https://github.com/tobuku/Test2
 **Live Site**: https://tobuku.github.io/Test2/
-**Purpose**: Testing and experimentation repo for GSAP animations and web development concepts. This site serves as the testing ground for **ProveForMe.com**.
+**Purpose**: Testing and experimentation repo for GSAP animations and web development concepts
 
 ## Current State
 
